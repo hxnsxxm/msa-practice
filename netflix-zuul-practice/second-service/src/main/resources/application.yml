@@ -1,11 +1,15 @@
 server:
-  port: 8082
+  port: 0
 
 spring:
   application:
-    name: my-first-service
+    name: my-second-service
 
 eureka:
   client:
-    fetch-registry: false
-    register-with-eureka: false
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka # eureka server
+  instance: # random port 설정 시 Eureka에는 port: 0에 대한 인스턴스 정보만 나오기 때문에 구분하기 위해서 필요함
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}

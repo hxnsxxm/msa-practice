@@ -4,6 +4,12 @@ server:
 spring:
   application:
     name: user-service
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true # web ?? ??
+      path: /h2-console # h2 console ??
 
 eureka:
   instance:

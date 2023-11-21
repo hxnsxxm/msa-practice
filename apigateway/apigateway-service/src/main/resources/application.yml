@@ -24,6 +24,10 @@ spring:
           uri: lb://USER-SERVICE # spring.application.name
           predicates: # ???
             - Path=/user-service/** # ???? ?? path
+        - id: catalog-service
+          uri: lb://CATALOG-SERVICE # spring.application.name
+          predicates: # ???
+            - Path=/catalog-service/** # ???? ?? path
         - id: first-service
           uri: lb://MY-FIRST-SERVICE # spring.application.name
           predicates: # ???

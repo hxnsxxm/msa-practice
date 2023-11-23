@@ -76,4 +76,16 @@ public class UserServiceImpl implements UserService {
                 true, true, true, true,
                 new ArrayList<>());  // list: 로그인 이후 권한 추가
     }
+
+    @Override
+    public UserDto getUserDetailsByEmail(String email) {
+        UserEntity userEntity = userRepository.findByEmail(email);
+
+        if (userEntity == null)
+            throw new UsernameNotFoundException(email);
+
+        UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
+
+        return userDto;
+    }
 }

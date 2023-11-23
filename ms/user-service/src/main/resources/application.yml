@@ -31,3 +31,8 @@ greeting:
 logging:
   level:
     com.example.userservice: DEBUG
+
+# JWT
+token:
+  expiration_time: 86400000 # ms ??, ??: 86400000
+  secret: Q4NSl604sgyHJj1qwEkR3ycUeR4uUAt7WJraD7EN3O9DVM4yyYuHxMEbSF4XXyYJkal13eqgB0F7Bq4H # ??? ???. ???? ? ? ??? -> ??? ?? ??

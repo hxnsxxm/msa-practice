@@ -46,7 +46,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
 
             // bearer token,
             String authorizationHeader = request.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
-            String jwt = authorizationHeader.replace("Bearer", ""); // Bearer 이후에 token이 붙어있는 문자열
+            String jwt = authorizationHeader.replace("Bearer ", ""); // Bearer 이후에 token이 붙어있는 문자열
 
             if (!isJwtValid(jwt))
                 return onError(exchange, "JWT token is not valid", HttpStatus.UNAUTHORIZED);
@@ -70,13 +70,13 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
 
     private boolean isJwtValid(String jwt) {
         boolean returnValue = true;
-        String subject = null;
+        String subject = null; // userId (uuid)
 
         try {
             Key secretKey = Keys.hmacShaKeyFor(env.getProperty("token.secret").getBytes(StandardCharsets.UTF_8));
             JwtParserBuilder jwtParserBuilder = Jwts.parserBuilder().setSigningKey(secretKey);
             subject = jwtParserBuilder.build()
-                    .parseClaimsJwt(jwt)
+                    .parseClaimsJws(jwt) // parseClaimsJwt( ) 아님
                     .getBody()
                     .getSubject();
         } catch (Exception e) {

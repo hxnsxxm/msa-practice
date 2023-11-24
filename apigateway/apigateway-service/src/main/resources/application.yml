@@ -49,18 +49,26 @@ spring:
             - RemoveRequestHeader=Cookie
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
             - AuthorizationHeaderFilter # ????, ???? ??? ??? ????. ?? ??? ?? ??? ??? ????? ??? -> filter ??
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/actuator/**
+            - Method=GET,POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
         - id: catalog-service
           uri: lb://CATALOG-SERVICE # spring.application.name
           predicates: # ???
-            - Path=/catalog-service/** # ???? ?? path
+            - Path=/catalog-service/**
         - id: order-service
-          uri: lb://ORDER-SERVICE # spring.application.name
-          predicates: # ???
-            - Path=/order-service/** # ???? ?? path
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/order-service/**
         - id: first-service
-          uri: lb://MY-FIRST-SERVICE # spring.application.name
-          predicates: # ???
-            - Path=/first-service/** # ???? ?? path
+          uri: lb://MY-FIRST-SERVICE
+          predicates:
+            - Path=/first-service/**
           filters:
 #            - AddRequestHeader=first-request, first-request-header2
 #            - AddResponseHeader=first-response, first-response-header2
@@ -79,6 +87,12 @@ spring:
                 preLogger: true
                 postLogger: true
 
-# JWT
-token:
-  secret: Q4NSl604sgyHJj1qwEkR3ycUeR4uUAt7WJraD7EN3O9DVM4yyYuHxMEbSF4XXyYJkal13eqgB0F7Bq4H # ??? ???. ???? ? ? ??? -> ??? ?? ??
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health,beans,httptrace # acruator에서 사용할 http endpoint
+
+# JWT -> spring cloud config 에서 가져오도록 변경
+#token:
+#  secret: Q4NSl604sgyHJj1qwEkR3ycUeR4uUAt7WJraD7EN3O9DVM4yyYuHxMEbSF4XXyYJkal13eqgB0F7Bq4H # ??? ???. ???? ? ? ??? -> ??? ?? ??

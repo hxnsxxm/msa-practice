@@ -32,7 +32,13 @@ logging:
   level:
     com.example.userservice: DEBUG
 
-# JWT
-token:
-  expiration_time: 86400000 # ms ??, ??: 86400000
-  secret: Q4NSl604sgyHJj1qwEkR3ycUeR4uUAt7WJraD7EN3O9DVM4yyYuHxMEbSF4XXyYJkal13eqgB0F7Bq4H # ??? ???. ???? ? ? ??? -> ??? ?? ??
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health,beans # acruator에서 사용할 http endpoint
+
+# JWT -> spring cloud config 에서 가져오도록 변경
+#token:
+#  expiration_time: 86400000 # ms ??, ??: 86400000
+#  secret: Q4NSl604sgyHJj1qwEkR3ycUeR4uUAt7WJraD7EN3O9DVM4yyYuHxMEbSF4XXyYJkal13eqgB0F7Bq4H # ??? ???. ???? ? ? ??? -> ??? ?? ??

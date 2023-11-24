@@ -3,3 +3,8 @@ spring:
     config:
       uri: http://127.0.0.1:8888
       name: ecommerce
+  profiles:
+    active: dev  # Deprecated: spring.profiles.active -> spring.config.activate.on-profile ?
+#  config:
+#    activate:
+#      on-profile: prod

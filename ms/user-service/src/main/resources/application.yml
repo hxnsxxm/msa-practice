@@ -4,6 +4,11 @@ server:
 spring:
   application:
     name: user-service
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
   h2:
     console:
       enabled: true
@@ -36,7 +41,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh,health,beans # acruator에서 사용할 http endpoint
+        include: refresh,health,beans,busrefresh # acruator에서 사용할 http endpoint
 
 # JWT -> spring cloud config 에서 가져오도록 변경
 #token:

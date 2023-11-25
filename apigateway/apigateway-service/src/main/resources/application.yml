@@ -11,6 +11,11 @@ eureka:
 spring:
   application:
     name: apigateway-service
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
   cloud:
     gateway:
       default-filters:
@@ -91,7 +96,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: refresh,health,beans,httptrace # acruator에서 사용할 http endpoint
+        include: refresh,health,beans,httptrace,busrefresh # acruator에서 사용할 http endpoint
 
 # JWT -> spring cloud config 에서 가져오도록 변경
 #token:

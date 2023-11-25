@@ -4,6 +4,11 @@ server:
 spring:
   application:
     name: config-service
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
   profiles:
     active: native
   cloud:
@@ -16,3 +21,8 @@ spring:
           #uri: file:///Users/jeonghansaem/Projects/msa-local
 #          username: # private 시 설정
 #          password: # private 시 설정
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, busrefresh

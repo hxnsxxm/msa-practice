@@ -1,7 +1,7 @@
 spring:
   cloud:
     config:
-      uri: http://127.0.0.1:8888
-      name: config-service
-#  profiles:
+      uri: http://127.0.0.1:8888  # configuration server
+      name: user-service
+#  profiles: # config -> profile 설정
 #    active: dev

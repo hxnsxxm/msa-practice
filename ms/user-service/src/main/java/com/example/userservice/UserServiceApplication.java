@@ -1,5 +1,6 @@
 package com.example.userservice;
 
+import com.example.userservice.error.FeignErrorDecoder;
 import feign.Logger;
 import feign.Logger.Level;
 import org.springframework.boot.SpringApplication;
@@ -38,4 +39,12 @@ public class UserServiceApplication {
 	public RestTemplate getRestTemplate() {
 		return new RestTemplate();
 	}
+
+	/**
+	 * FeignErrorDecoder 에 @Component, @Autowired를 설정하여서 해당 부분은 필요없음
+	 */
+//	@Bean
+//	public FeignErrorDecoder getFeignErrorDecoder() {
+//		return new FeignErrorDecoder();
+//	}
 }
